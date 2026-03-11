@@ -31,6 +31,54 @@ You do **not** need to be a developer to benefit from this guide. Every concept 
 
 ---
 
+## 🧩 What This Playbook Adds
+
+This playbook builds on top of [Paweł Huryn's pm-skills](https://github.com/phuryn/pm-skills) (65 skills, 36 commands) by adding a **structured decision-making and governance layer** that controls *when* and *how* those skills get used.
+
+### Custom Skills (not in pm-skills)
+
+| Skill | What it does | Auto-invokes when... |
+|-------|-------------|---------------------|
+| **clarification-gate** | Asks max 5 questions before building anything; states assumptions first | User says "build", "implement", "create", "add" |
+| **honest-evaluator** | Brutally honest 6-part framework: strengths, fatal flaws, hidden costs, risk heatmap, verdict | User says "should we build", "evaluate", "pros and cons" |
+| **adr-creator** | Generates Architecture Decision Records with cost analysis at 4 scale tiers (MVP to 100M users) | User mentions database, infrastructure, scaling, "X or Y" |
+| **instruction-auditor** | Detects anti-patterns in CLAUDE.md and skills; suggests fixes | User asks to review setup or quality is declining |
+
+### Custom Commands (not in pm-skills)
+
+| Command | What it does |
+|---------|-------------|
+| `/act [goal]` | Runs a structured **5-Act experience**: Context → Discovery → Design (pause for approval) → Implementation → Review. Chains clarification-gate + evaluate + ADR generation |
+| `/evaluate [idea]` | Triggers the honest-evaluator: strengths / fatal flaws / hidden costs / BUILD NOW or DIFFERENTLY verdict |
+| `/update-backlog` | Syncs TASKS.md: marks completed items, adds discovered items, logs parked items with reasons |
+
+### Custom Hooks (not in pm-skills)
+
+| Hook | Type | What it does |
+|------|------|-------------|
+| **skill-router.sh** | `UserPromptSubmit` | Pattern-matches your prompt and suggests relevant commands (e.g., mentions "PRD" → suggests `/write-prd`) |
+| **backlog-updater.sh** | `PostToolUse` | Auto-logs "IMPLEMENTED" and "PARKED" events to task-log.md and BACKLOG.md |
+| **Safety guard** | `PreToolUse` | Blocks dangerous commands (`rm -rf`, `git push --force`, `DROP TABLE`) before they execute |
+
+### The key idea
+
+**pm-skills** gives you *what* to do (write a PRD, run discovery, analyse competitors). This playbook adds the *discipline layer*: clarify before building, evaluate honestly, pause before implementing, track everything, and improve the system weekly.
+
+```
+pm-skills (Paweł Huryn)          This playbook adds
+─────────────────────────        ─────────────────────────
+65 PM execution skills     +     Clarification gate (ask before building)
+36 chained workflows       +     Honest evaluation (no flattery)
+8 domain plugins           +     5-Act structured workflow
+                           +     ADR with cost analysis at scale
+                           +     Live backlog tracking (TASKS.md)
+                           +     Smart skill router (auto-suggest)
+                           +     Safety hooks (block dangerous commands)
+                           +     Self-learning loops (weekly improvement)
+```
+
+---
+
 ## 📖 How to Use This Guide
 
 This guide is structured as a **three-level progression**. Work through each level in order, or jump to what you need using the table of contents.
