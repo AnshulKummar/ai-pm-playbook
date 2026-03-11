@@ -99,34 +99,33 @@ This guide is structured as a **three-level progression**. Work through each lev
 - [Chapter 1: What is Claude Code — A PM's Lens](#chapter-1-what-is-claude-code--a-pms-lens)
 - [Chapter 2: Installation & First Setup](#chapter-2-installation--first-setup)
 - [Chapter 3: Your CLAUDE.md — Claude's Permanent Memory](#chapter-3-your-claudemd--claudes-permanent-memory)
-- [Chapter 4: Personal OS — Your AI-Powered Task Manager](#chapter-4-personal-os--your-ai-powered-task-manager)
-- [Chapter 5: PM Skills Marketplace](#chapter-5-pm-skills-marketplace)
+- [Chapter 4: PM Skills Marketplace](#chapter-4-pm-skills-marketplace)
 
 </details>
 
 <details>
 <summary><strong>🟡 Level 2 — PM Productivity (click to expand)</strong></summary>
 
-- [Chapter 6: The Core Mental Model — Skills vs Commands vs Hooks](#chapter-6-the-core-mental-model--skills-vs-commands-vs-hooks)
-- [Chapter 7: Discovery, PRDs & Strategy Docs](#chapter-7-discovery-prds--strategy-docs)
-- [Chapter 8: Clarifying Questions — Never Build the Wrong Thing](#chapter-8-clarifying-questions--never-build-the-wrong-thing)
-- [Chapter 9: Honest Evaluation — Your Brutally Honest Co-Founder](#chapter-9-honest-evaluation--your-brutally-honest-co-founder)
-- [Chapter 10: Live Backlog & Todo Management](#chapter-10-live-backlog--todo-management)
-- [Chapter 11: PM ↔ Engineering Concepts Bridge](#chapter-11-pm--engineering-concepts-bridge)
+- [Chapter 5: The Core Mental Model — Skills vs Commands vs Hooks](#chapter-5-the-core-mental-model--skills-vs-commands-vs-hooks)
+- [Chapter 6: Discovery, PRDs & Strategy Docs](#chapter-6-discovery-prds--strategy-docs)
+- [Chapter 7: Clarifying Questions — Never Build the Wrong Thing](#chapter-7-clarifying-questions--never-build-the-wrong-thing)
+- [Chapter 8: Honest Evaluation — Your Brutally Honest Co-Founder](#chapter-8-honest-evaluation--your-brutally-honest-co-founder)
+- [Chapter 9: Live Backlog & Todo Management](#chapter-9-live-backlog--todo-management)
+- [Chapter 10: PM ↔ Engineering Concepts Bridge](#chapter-10-pm--engineering-concepts-bridge)
 
 </details>
 
 <details>
 <summary><strong>🔴 Level 3 — Advanced Mastery (click to expand)</strong></summary>
 
-- [Chapter 12: Beyond Vibe Coding — Architecture for Scale](#chapter-12-beyond-vibe-coding--architecture-for-scale)
-- [Chapter 13: ADR Creation with Cost Analysis](#chapter-13-adr-creation-with-cost-analysis)
-- [Chapter 14: Architecture Patterns — Choosing the Right One](#chapter-14-architecture-patterns--choosing-the-right-one)
-- [Chapter 15: Conversational Agent Experiences — The Acts Framework](#chapter-15-conversational-agent-experiences--the-acts-framework)
-- [Chapter 16: Self-Learning Loops](#chapter-16-self-learning-loops)
-- [Chapter 17: Token Optimization Strategies](#chapter-17-token-optimization-strategies)
-- [Chapter 18: Auto-Improving Your Instructions](#chapter-18-auto-improving-your-instructions)
-- [Chapter 19: Making This Your Default Setup](#chapter-19-making-this-your-default-setup)
+- [Chapter 11: Beyond Vibe Coding — Architecture for Scale](#chapter-11-beyond-vibe-coding--architecture-for-scale)
+- [Chapter 12: ADR Creation with Cost Analysis](#chapter-12-adr-creation-with-cost-analysis)
+- [Chapter 13: Architecture Patterns — Choosing the Right One](#chapter-13-architecture-patterns--choosing-the-right-one)
+- [Chapter 14: Conversational Agent Experiences — The Acts Framework](#chapter-14-conversational-agent-experiences--the-acts-framework)
+- [Chapter 15: Self-Learning Loops](#chapter-15-self-learning-loops)
+- [Chapter 16: Token Optimization Strategies](#chapter-16-token-optimization-strategies)
+- [Chapter 17: Auto-Improving Your Instructions](#chapter-17-auto-improving-your-instructions)
+- [Chapter 18: Making This Your Default Setup](#chapter-18-making-this-your-default-setup)
 
 </details>
 
@@ -281,44 +280,7 @@ your-project/
 
 ---
 
-## Chapter 4: Personal OS — Your AI-Powered Task Manager
-
-**Recommended repo:** [amanaiproduct/personal-os](https://github.com/amanaiproduct/personal-os) ⭐ 203 stars
-
-This is a framework for AI-powered task management that integrates directly with Claude Code. It turns chaotic brain dumps into organised, goal-aligned task lists.
-
-### Setup (2 minutes)
-
-```bash
-git clone https://github.com/amanaiproduct/personal-os.git ~/personal-os
-cd ~/personal-os
-./setup.sh   # Interactive — guides you through goals and priorities
-```
-
-### Daily workflow
-
-```
-Morning   → "Show me today's priorities"  → Pick 1-3 tasks
-During    → Brain dump into BACKLOG.md    → No structure needed
-Anytime   → "Process my backlog"          → AI creates P0/P1/P2/P3 tasks
-End of day → "Mark [task] as done"        → Updates automatically
-Weekly    → "Process my backlog" + review session evals
-```
-
-### Priority system
-
-| Priority | Meaning | Daily limit |
-|----------|---------|------------|
-| **P0** | Do today | Max 3 |
-| **P1** | This week | Max 7 |
-| **P2** | Scheduled | Unlimited |
-| **P3** | Someday/maybe | Unlimited |
-
-> **Credit:** Framework by [Aman Khan](https://github.com/amanaiproduct) ([@__amankhan](https://x.com/_amankhan)). Licensed CC BY-NC-SA 4.0.
-
----
-
-## Chapter 5: PM Skills Marketplace
+## Chapter 4: PM Skills Marketplace
 
 **Recommended repo:** [phuryn/pm-skills](https://github.com/phuryn/pm-skills) ⭐ 55 stars — **PRIMARY RECOMMENDATION for all PMs**
 
@@ -378,7 +340,7 @@ claude plugin marketplace add phuryn/pm-skills
 
 ---
 
-## Chapter 6: The Core Mental Model — Skills vs Commands vs Hooks
+## Chapter 5: The Core Mental Model — Skills vs Commands vs Hooks
 
 This is the single most important concept in advanced Claude Code usage. Getting it wrong costs hours.
 
@@ -448,7 +410,7 @@ Create `.claude/settings.json`:
 
 ---
 
-## Chapter 7: Discovery, PRDs & Strategy Docs
+## Chapter 6: Discovery, PRDs & Strategy Docs
 
 ### The complete PM workflow — from idea to stories
 
@@ -481,7 +443,7 @@ Step 7: Backlog     → /update-backlog [sync TASKS.md]
 
 ---
 
-## Chapter 8: Clarifying Questions — Never Build the Wrong Thing
+## Chapter 7: Clarifying Questions — Never Build the Wrong Thing
 
 One of the most expensive Claude Code mistakes is building the wrong thing at full speed. This skill creates a clarification gate before any substantial work begins.
 
@@ -536,7 +498,7 @@ Confirm understanding before writing any code.
 
 ---
 
-## Chapter 9: Honest Evaluation — Your Brutally Honest Co-Founder
+## Chapter 8: Honest Evaluation — Your Brutally Honest Co-Founder
 
 Generic AI flatters ideas. This setup makes Claude Code tell you what will break at 10M users, why your pricing model has a flaw, and what your team isn't ready to build.
 
@@ -621,7 +583,7 @@ Build-vs-buy crossover: approximately 500M messages/month.
 
 ---
 
-## Chapter 10: Live Backlog & Todo Management
+## Chapter 9: Live Backlog & Todo Management
 
 Claude Code should actively maintain your task state as it works — not just write code. Every time it implements something, parks something, or discovers a blocker, it should update your task files automatically.
 
@@ -697,11 +659,9 @@ echo "$CONTENT" | grep -qi "PARKED:\|PARKING:" && {
 exit 0
 ```
 
-> **Integration tip:** Point your TASKS.md at `~/personal-os/Tasks/` if you're using [amanaiproduct/personal-os](https://github.com/amanaiproduct/personal-os). One brain dump, two agents, zero duplication.
-
 ---
 
-## Chapter 11: PM ↔ Engineering Concepts Bridge
+## Chapter 10: PM ↔ Engineering Concepts Bridge
 
 You don't need to write code, but you need to understand what engineers are deciding and why it matters for your PRD. These are the 10 most important engineering concepts for PMs.
 
@@ -728,7 +688,7 @@ You don't need to write code, but you need to understand what engineers are deci
 
 ---
 
-## Chapter 12: Beyond Vibe Coding — Architecture for Scale
+## Chapter 11: Beyond Vibe Coding — Architecture for Scale
 
 Vibe coding gets you to MVP. Real architecture gets you to 100M users without a rewrite.
 
@@ -783,7 +743,7 @@ Vibe coding gets you to MVP. Real architecture gets you to 100M users without a 
 
 ---
 
-## Chapter 13: ADR Creation with Cost Analysis
+## Chapter 12: ADR Creation with Cost Analysis
 
 Architecture Decision Records (ADRs) are the most important artifact for teams building at scale. They turn one-time debates into permanent institutional knowledge — and Claude Code should generate one automatically for every significant design choice.
 
@@ -886,7 +846,7 @@ Migration path: Schema is portable to Aurora Postgres with 2-week migration.
 
 ---
 
-## Chapter 14: Architecture Patterns — Choosing the Right One
+## Chapter 13: Architecture Patterns — Choosing the Right One
 
 ### Pattern Decision Table
 
@@ -913,7 +873,7 @@ Generate ADR-[N] with cost analysis at 4 scale tiers."
 
 ---
 
-## Chapter 15: Conversational Agent Experiences — The Acts Framework
+## Chapter 14: Conversational Agent Experiences — The Acts Framework
 
 The most sophisticated Claude Code setup treats multi-step AI interactions as a narrative — not a one-shot prompt. Writing agent experiences as **Acts** creates structured, testable, resumable conversation flows.
 
@@ -1082,7 +1042,7 @@ Never skip the Act 3 pause. Never proceed to Act 4 without confirmed design.
 
 ---
 
-## Chapter 16: Self-Learning Loops
+## Chapter 15: Self-Learning Loops
 
 Self-learning loops work at three levels: **session** (what worked this session), **project** (what patterns are improving), and **system** (the instructions themselves getting better over time).
 
@@ -1122,7 +1082,7 @@ Suggest 3 specific improvements with the exact change to make."
 
 ---
 
-## Chapter 17: Token Optimization Strategies
+## Chapter 16: Token Optimization Strategies
 
 Context window management is the primary failure mode for advanced Claude Code users. These strategies prevent quality degradation.
 
@@ -1150,7 +1110,7 @@ Context window management is the primary failure mode for advanced Claude Code u
 
 ---
 
-## Chapter 18: Auto-Improving Your Instructions
+## Chapter 17: Auto-Improving Your Instructions
 
 ### Create `.claude/skills/instruction-auditor/SKILL.md`
 
@@ -1187,7 +1147,7 @@ description: Auto-invoke when user asks to review or improve CLAUDE.md, skills,
 
 ---
 
-## Chapter 19: Making This Your Default Setup
+## Chapter 18: Making This Your Default Setup
 
 ### Global configuration (applies to all projects)
 
@@ -1210,10 +1170,6 @@ mkdir -p ~/.claude/skills/personal-style
 
 # Install PM Skills globally
 claude plugin marketplace add phuryn/pm-skills
-
-# Clone Personal OS
-git clone https://github.com/amanaiproduct/personal-os.git ~/personal-os
-cd ~/personal-os && ./setup.sh
 
 echo "✅ Claude Code default setup complete!"
 ```
@@ -1382,7 +1338,6 @@ This guide synthesises work from many practitioners and researchers. Full attrib
 | Project | Creator | Stars | What this guide uses |
 |---------|---------|-------|---------------------|
 | [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | [Paweł Huryn](https://www.productcompass.pm) | ⭐ 55 | 65 PM skills, 36 commands, 8 plugins |
-| [amanaiproduct/personal-os](https://github.com/amanaiproduct/personal-os) | [Aman Khan](https://x.com/_amankhan) | ⭐ 203 | Personal task OS, goal-driven priorities |
 | [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | Community | — | Skills, hooks, commands directory |
 | [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | Shan Raisshan | — | Command → Agent → Skill architecture |
 | [ChrisWiles/claude-code-showcase](https://github.com/ChrisWiles/claude-code-showcase) | Chris Wiles | — | Reference hooks, settings, skills |
