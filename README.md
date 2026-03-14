@@ -1393,6 +1393,33 @@ You are free to use, modify, and distribute this guide for personal and commerci
 
 ---
 
+## ⚠️ Disclaimer
+
+THIS GUIDE IS PROVIDED FOR **EDUCATIONAL AND INFORMATIONAL PURPOSES ONLY**.
+
+- This playbook does **not** constitute professional advice of any kind, including engineering, legal, security, or product management advice.
+- All code examples, shell scripts, hooks, and configurations are provided **"AS IS"** without warranty of any kind, express or implied.
+- The authors and contributors are **not** responsible for any decisions, actions, or consequences arising from the use of this guide, including data loss, security incidents, or business decisions made based on the frameworks presented herein.
+- Users are **solely responsible** for reviewing, testing, and validating all code before use in any environment.
+- Claude Code is a product of [Anthropic](https://www.anthropic.com). This guide is an independent community resource and is **not** affiliated with, endorsed by, or sponsored by Anthropic.
+- The [pm-skills](https://github.com/phuryn/pm-skills) plugin collection is maintained by Pawel Huryn. This guide references and builds upon pm-skills but is independently maintained.
+
+See [NOTICE](NOTICE) for full attribution and legal details.
+
+---
+
+## 🔐 Security & Governance
+
+| Document | Description |
+|----------|-------------|
+| [SECURITY.md](SECURITY.md) | Vulnerability reporting policy |
+| [PRIVACY.md](PRIVACY.md) | Privacy policy |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Community standards |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |
+| [NOTICE](NOTICE) | Attribution and legal disclaimer |
+
+---
+
 <div align="center">
 
 **Built for the PM community • March 2026**

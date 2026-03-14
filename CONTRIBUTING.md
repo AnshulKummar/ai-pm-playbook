@@ -34,9 +34,17 @@ Thank you for your interest in contributing! This guide is built by and for the 
 - Translations for non-English-speaking PM communities
 - Fixes for outdated Claude Code APIs or deprecated features
 
+### Security
+
+If you discover a security issue in any code example, hook, or script, please report it privately. See [SECURITY.md](SECURITY.md) for details. **Do not open a public issue for security vulnerabilities.**
+
 ### Code of Conduct
 
-Be respectful, constructive, and inclusive. We're all here to help PMs ship better products.
+This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). Be respectful, constructive, and inclusive. We're all here to help PMs ship better products.
+
+### License Agreement
+
+By submitting a pull request, you agree that your contributions are licensed under this project's [MIT License](LICENSE).
 
 ## Questions?
 

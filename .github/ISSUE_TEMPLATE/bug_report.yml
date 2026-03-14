@@ -1,0 +1,47 @@
+name: Bug Report
+description: Report an error, outdated API, or incorrect information in the guide
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What's wrong?
+      description: Describe the issue clearly
+      placeholder: "Chapter X says to use `claude plugin add --marketplace` but the correct syntax is..."
+    validations:
+      required: true
+  - type: input
+    id: section
+    attributes:
+      label: Affected chapter/section
+      placeholder: "Chapter 4 — Your First Claude Code Session"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Issue type
+      options:
+        - Outdated Claude Code API/syntax
+        - Incorrect information
+        - Broken link
+        - Script/hook error
+        - Typo or formatting
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should it say instead?
+      description: If you know the correct information, please share it
+    validations:
+      required: false
+  - type: input
+    id: platform
+    attributes:
+      label: Platform (if script/hook related)
+      placeholder: "macOS / Windows (Git Bash) / Linux"
+    validations:
+      required: false
