@@ -13,7 +13,7 @@
 
 *This guide is currently optimised for [Claude Code](https://code.claude.com) but the frameworks, skills, and workflows are applicable to any AI coding assistant.*
 
-[🟢 Level 1: Start Here](#-level-1--foundations) • [🟡 Level 2: PM Productivity](#-level-2--pm-productivity) • [🔴 Level 3: Advanced](#-level-3--advanced-mastery) • [⚡ Quick Reference](#-quick-reference) • [📚 Credits](#-credits--references)
+[🟢 Level 1: Start Here](#-level-1--foundations) • [🟡 Level 2: PM Productivity](#-level-2--pm-productivity) • [🔴 Level 3: Advanced](#-level-3--advanced-mastery) • [🛠️ PoC Playbook](#️-poc-playbook--from-idea-to-working-prototype) • [⚡ Quick Reference](#-quick-reference) • [📚 Credits](#-credits--references)
 
 </div>
 
@@ -134,6 +134,167 @@ pm-skills (Paweł Huryn)          This playbook adds
                            +     Safety hooks (block dangerous commands)
                            +     Self-learning loops (weekly improvement)
 ```
+
+---
+
+## 🎯 Who Benefits and How
+
+This playbook is designed for PMs, but the governance layer is valuable to anyone using AI code assistants to build real things. Here's how each persona benefits:
+
+| Persona | Primary use case | Start here | Key value |
+|---------|-----------------|------------|-----------|
+| **Product Manager** | Validate ideas, write PRDs, run discovery | [Chapter 1](#chapter-1-what-is-claude-code--a-pms-lens) | Discipline layer prevents building the wrong thing |
+| **PM building a PoC** | Ship a working prototype to prove a concept | [PoC Playbook](#-poc-playbook--from-idea-to-working-prototype) below | Structured path from idea to demo-ready build |
+| **Solo founder / indie hacker** | Build an MVP without an engineering team | [Quick Start](#-quick-start) + [Chapter 12](#chapter-12-conversational-agent-experiences--the-acts-framework) | 5-Act framework turns vague ideas into shippable code |
+| **Technical PM** | Govern AI-assisted development, make arch decisions | [Chapter 5](#chapter-5-the-core-mental-model--skills-vs-commands-vs-hooks) | Hooks + ADRs + evaluation prevent expensive mistakes |
+| **Engineering Manager** | Understand PM workflows, improve PM-eng collaboration | [Chapter 10](#chapter-10-pm--engineering-concepts-bridge) | Bridge table translates PM ↔ engineering concepts |
+| **Consultant / freelancer** | Build client PoCs quickly with quality guardrails | [PoC Playbook](#-poc-playbook--from-idea-to-working-prototype) | Repeatable process: clone → setup → deliver |
+| **Product Designer** | Create interactive prototypes beyond Figma | [Chapter 6](#chapter-6-discovery-prds--strategy-docs) + [Chapter 12](#chapter-12-conversational-agent-experiences--the-acts-framework) | Discovery → design → working prototype in one session |
+
+---
+
+## 🛠️ PoC Playbook — From Idea to Working Prototype
+
+Building a Proof of Concept is where this playbook delivers the most tangible value. A PoC is not a toy demo — it's the fastest path to answering "should we invest engineering resources in this?"
+
+### Why PMs should build PoCs with AI code assistants
+
+| Traditional PoC | PoC with this playbook |
+|----------------|----------------------|
+| Write a PRD → wait for eng sprint allocation → 2-4 weeks | `/act [idea]` → working prototype in hours |
+| "Trust me, this will work" → stakeholder skepticism | Demo a working prototype → stakeholder conviction |
+| Scope creep turns PoC into accidental v1 | Clarification gate scopes it; honest evaluator kills bad ideas early |
+| No architecture thinking → rewrite when it gets real | ADR creator documents decisions even in a PoC |
+| PoC dies in a branch, learnings lost | Backlog tracker captures what was built, parked, and discovered |
+
+### The PoC workflow (step by step)
+
+```
+Phase 1: VALIDATE (before writing any code)
+─────────────────────────────────────────────
+  /evaluate [your idea]
+  → Get: strengths, fatal flaws, hidden costs, BUILD/KILL verdict
+  → If verdict is DO NOT BUILD, you just saved weeks
+
+Phase 2: SCOPE (define what the PoC must prove)
+─────────────────────────────────────────────
+  /act [your idea]
+  → Act 1: Clarification gate fires — 5 questions, assumptions stated
+  → Act 2: Discovery — risks surfaced, unknowns identified
+  → Act 3: Design — component plan, ADR if architectural
+  → PAUSE: you approve the scope before any code is written
+
+Phase 3: BUILD (structured implementation)
+─────────────────────────────────────────────
+  → Act 4: Build iteratively with checkpoints
+  → Every component: IMPLEMENTED / PARKED / DISCOVERED logged
+  → Safety hooks prevent accidental damage
+
+Phase 4: CAPTURE (preserve learnings)
+─────────────────────────────────────────────
+  /update-backlog
+  → Act 5: What worked, what didn't, what to build next
+  → TASKS.md shows exactly what was delivered
+  → BACKLOG.md captures everything deferred for v1
+```
+
+### PoC quick-start for each persona
+
+<details>
+<summary><strong>PM validating a feature idea</strong></summary>
+
+```bash
+# 1. Bootstrap your PoC project
+mkdir my-feature-poc && cd my-feature-poc && git init
+bash /path/to/ai-pm-playbook/setup.sh .
+
+# 2. Edit CLAUDE.md with your context
+# Add: what the feature does, who it's for, what success looks like
+
+# 3. Evaluate before building
+/evaluate AI-powered notification system that reduces alert fatigue by 60%
+
+# 4. If verdict is BUILD NOW or BUILD DIFFERENTLY:
+/act Build a notification system PoC that demonstrates intelligent alert
+    grouping and priority scoring for a B2B SaaS dashboard
+
+# 5. After the build session:
+/update-backlog
+# Share TASKS.md with your team as "here's what we proved"
+```
+
+**What you walk away with:** A working prototype + an honest evaluation + a task log showing exactly what was built and what was deferred. Enough to make a go/no-go decision with your engineering team.
+
+</details>
+
+<details>
+<summary><strong>Solo founder building an MVP</strong></summary>
+
+```bash
+# 1. Bootstrap
+mkdir my-startup && cd my-startup && git init
+bash /path/to/ai-pm-playbook/setup.sh .
+
+# 2. Start with discovery, not code
+/discover [your product idea — be specific about the user problem]
+
+# 3. Write a lightweight PRD
+/write-prd [feature based on discovery output]
+
+# 4. Pre-mortem before building
+/pre-mortem [paste PRD summary]
+
+# 5. Build with the 5-Act framework
+/act Build MVP for [product]: [core user flow in one sentence]
+
+# 6. After each major session
+/update-backlog
+```
+
+**What you walk away with:** A validated idea (not just a hunch), a working MVP with architecture decisions documented, and a backlog that tells you exactly what to build next.
+
+</details>
+
+<details>
+<summary><strong>Consultant delivering a client PoC</strong></summary>
+
+```bash
+# 1. Repeatable setup for every client project
+mkdir client-poc && cd client-poc && git init
+bash /path/to/ai-pm-playbook/setup.sh .
+
+# 2. Fill CLAUDE.md with client context
+# Stack constraints, compliance requirements, scale expectations
+
+# 3. Run the structured workflow
+/act [client's problem statement + success criteria]
+
+# 4. The 5-Act framework automatically:
+#    - Clarifies requirements (Act 1) — no miscommunication
+#    - Surfaces risks (Act 2) — nothing surprises the client
+#    - Designs before building (Act 3) — client approves scope
+#    - Builds with checkpoints (Act 4) — transparent progress
+#    - Documents everything (Act 5) — professional handoff
+
+# 5. Deliverables
+/update-backlog
+# Hand off: working prototype + TASKS.md + BACKLOG.md + docs/adr/
+```
+
+**What you walk away with:** A professional deliverable package — working code, documented architecture decisions, a clear task log, and a backlog the client can hand to their engineering team.
+
+</details>
+
+### What makes a good PoC vs a bad one
+
+| Good PoC (this playbook enforces) | Bad PoC (what happens without guardrails) |
+|-----------------------------------|-------------------------------------------|
+| Proves or disproves one specific hypothesis | Tries to build a mini-product |
+| Scoped to 1-2 day build (clarification gate) | Scope creeps into weeks |
+| Architecture decisions documented (ADR) | "We'll figure it out later" |
+| Honest evaluation before building | "Everything looks great!" flattery |
+| Clear record of what was built vs deferred | PoC dies, learnings lost |
+| Stakeholder can see and interact with it | Slides and hand-waving |
 
 ---
 
