@@ -8,6 +8,13 @@
 .DS_Store
 Thumbs.db
 
+# Hook-generated logs
+.claude/task-log.md
+.claude/session-log.md
+
+# Claude Code worktrees
+.claude/worktrees/
+
 # Editor files
 *.swp
 *.swo

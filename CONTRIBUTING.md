@@ -1,4 +1,4 @@
-# Contributing to Claude Code for Product Managers
+# Contributing to AI PM Playbook
 
 Thank you for your interest in contributing! This guide is built by and for the PM community.
 

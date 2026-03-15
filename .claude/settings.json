@@ -12,7 +12,7 @@
         "matcher": "Edit|Write",
         "hooks": [{
           "type": "command",
-          "command": "[ \"$(git branch --show-current)\" != \"main\" ] || { echo '{\"block\": true, \"message\": \"Cannot edit main branch directly\"}' >&2; exit 2; }"
+          "command": "BRANCH=$(git branch --show-current 2>/dev/null); [ \"$BRANCH\" != \"main\" ] && [ \"$BRANCH\" != \"master\" ] || { echo '{\"block\": true, \"message\": \"Cannot edit protected branch directly\"}' >&2; exit 2; }"
         }]
       }
     ],

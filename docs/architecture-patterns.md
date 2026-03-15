@@ -1,5 +1,7 @@
 # Architecture Patterns — Choosing the Right One
 
+> [Back to AI PM Playbook](../README.md)
+
 > This reference guide was moved from the main README to keep the playbook focused. Load this on demand: "Read docs/architecture-patterns.md for pattern selection guidance."
 
 ## Pattern Decision Table

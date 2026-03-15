@@ -451,7 +451,7 @@ Create `.claude/settings.json`:
         "matcher": "Edit|Write",
         "hooks": [{
           "type": "command",
-          "command": "[ \"$(git branch --show-current)\" != \"main\" ] || { echo '{\"block\": true, \"message\": \"Cannot edit main branch directly\"}' >&2; exit 2; }"
+          "command": "BRANCH=$(git branch --show-current 2>/dev/null); [ \"$BRANCH\" != \"main\" ] && [ \"$BRANCH\" != \"master\" ] || { echo '{\"block\": true, \"message\": \"Cannot edit protected branch directly\"}' >&2; exit 2; }"
         }]
       }
     ],
@@ -464,6 +464,8 @@ Create `.claude/settings.json`:
   }
 }
 ```
+
+> **Note:** The example above shows a lint hook for illustration. The `settings.json` included in this repo uses `backlog-updater.sh` instead — see [Chapter 9](#chapter-9-live-backlog--todo-management) for details.
 
 ---
 
@@ -651,7 +653,7 @@ Claude Code should actively maintain your task state as it works — not just wr
 | **IMPLEMENTED** | Feature/fix complete and tested | Mark done in TASKS.md, add commit ref |
 | **PARKED** | Scope creep or dependency blocks progress | Add to BACKLOG.md with reason + unblocking condition |
 | **DISCOVERED** | New requirement found mid-implementation | Add to BACKLOG.md as P2 with context |
-| **BLOCKED** | External dependency prevents progress | Add to BLOCKED.md with owner + ETA |
+| **BLOCKED** | External dependency prevents progress | Add to Blocked section of TASKS.md with owner + ETA |
 
 ### TASKS.md Template
 
@@ -697,22 +699,34 @@ Keep all entries under 1 line each. Date format: YYYY-MM-DD.
 ```bash
 # .claude/hooks/backlog-updater.sh
 #!/bin/bash
-# Extract content without jq — use bash parameter expansion
-CONTENT="$CLAUDE_TOOL_INPUT"
-CONTENT="${CONTENT#*\"content\":\"}"
+# No jq dependency — uses bash parameter expansion
+# Handles both Write tool ("content") and Edit tool ("new_string") inputs
+
+RAW="$CLAUDE_TOOL_INPUT"
+
+# Try "content" (Write tool) first, then "new_string" (Edit tool)
+if echo "$RAW" | grep -q '"content"'; then
+  CONTENT="${RAW#*\"content\":\"}"
+else
+  CONTENT="${RAW#*\"new_string\":\"}"
+fi
 CONTENT="${CONTENT%%\"*}"
+
+FEEDBACK=""
 
 echo "$CONTENT" | grep -qi "IMPLEMENTED:\|DONE:" && {
   TASK=$(echo "$CONTENT" | grep -i "IMPLEMENTED:\|DONE:" | head -1)
   echo "$(date +%Y-%m-%d): $TASK" >> .claude/task-log.md
-  echo "{\"feedback\": \"Task logged to task-log.md\"}"
+  FEEDBACK="Task logged to task-log.md"
 }
 
 echo "$CONTENT" | grep -qi "PARKED:\|PARKING:" && {
   TASK=$(echo "$CONTENT" | grep -i "PARKED:\|PARKING:" | head -1)
   echo "- [ ] $TASK (parked $(date +%Y-%m-%d))" >> BACKLOG.md
-  echo "{\"feedback\": \"Added parked item to BACKLOG.md\"}"
+  FEEDBACK="${FEEDBACK:+$FEEDBACK; }Added parked item to BACKLOG.md"
 }
+
+[ -n "$FEEDBACK" ] && echo "{\"feedback\": \"$FEEDBACK\"}"
 exit 0
 ```
 

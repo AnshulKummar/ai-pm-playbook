@@ -1,5 +1,7 @@
 # Beyond Vibe Coding — Architecture for Scale
 
+> [Back to AI PM Playbook](../README.md)
+
 > This reference guide was moved from the main README to keep the playbook focused. Load this on demand: "Read docs/architecture-for-scale.md for scale architecture guidance."
 
 Vibe coding gets you to MVP. Real architecture gets you to 100M users without a rewrite.
