@@ -1,20 +1,78 @@
 <div align="center">
 
-# ⚡ Claude Code for Product Managers
-### From Novice to Advanced — A Complete Playbook
+# AI PM Playbook
+### From Novice to Advanced — A Complete Guide for Product Managers Using AI Code Assistants
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-Best_Practices-blue)](https://code.claude.com/docs)
 [![PM Skills](https://img.shields.io/badge/PM_Skills-65_skills_36_workflows-teal)](https://github.com/phuryn/pm-skills)
 
 **Build real products. Think like an engineer. Ship like a PM.**
 
-*A structured, open-source guide for Product Managers who want to use Claude Code effectively — from first install to multi-agent orchestration at 100M user scale.*
+*A structured, open-source playbook for Product Managers who want to use AI code assistants effectively — from first install to production-grade workflows.*
+
+*This guide is currently optimised for [Claude Code](https://code.claude.com) but the frameworks, skills, and workflows are applicable to any AI coding assistant.*
 
 [🟢 Level 1: Start Here](#-level-1--foundations) • [🟡 Level 2: PM Productivity](#-level-2--pm-productivity) • [🔴 Level 3: Advanced](#-level-3--advanced-mastery) • [⚡ Quick Reference](#-quick-reference) • [📚 Credits](#-credits--references)
 
 </div>
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# 1. Clone this repo
+git clone https://github.com/AnshulKummar/ai-pm-playbook.git
+cd ai-pm-playbook
+
+# 2. Bootstrap your project with the full PM governance layer
+bash setup.sh /path/to/your-project
+
+# 3. Install PM Skills plugin (65 skills, 36 commands)
+claude plugin marketplace add phuryn/pm-skills
+
+# 4. Start your first structured workflow
+/act [your goal here]
+```
+
+> **What you get on `git clone`:** 4 skills, 3 commands, 2 hooks, safety guards, settings.json, and project templates — all as real files, ready to use. No copy-pasting from code blocks.
+
+### Repository structure
+
+```
+ai-pm-playbook/
+├── .claude/
+│   ├── settings.json                    # Safety hooks + skill router wiring
+│   ├── skills/
+│   │   ├── clarification-gate/SKILL.md  # Ask before building
+│   │   ├── honest-evaluator/SKILL.md    # No-flattery evaluation
+│   │   ├── adr-creator/SKILL.md         # Architecture decisions + cost
+│   │   └── instruction-auditor/SKILL.md # Self-improvement
+│   ├── commands/
+│   │   ├── act.md                       # /act — 5-act structured workflow
+│   │   ├── evaluate.md                  # /evaluate — honest assessment
+│   │   └── update-backlog.md            # /update-backlog — sync tasks
+│   └── hooks/
+│       ├── skill-router.sh              # Auto-suggest relevant commands
+│       └── backlog-updater.sh           # Auto-log task events
+├── templates/
+│   ├── CLAUDE.md                        # Starter project config template
+│   ├── TASKS.md                         # Task board template
+│   └── BACKLOG.md                       # Backlog template
+├── docs/
+│   ├── architecture-for-scale.md        # B2C/B2B scale reference
+│   └── architecture-patterns.md         # CQRS, Saga, CRDT patterns
+├── setup.sh                             # One-command project bootstrap
+├── README.md                            # This guide (16 chapters)
+├── CHANGELOG.md                         # Version history
+├── LICENSE                              # MIT
+├── NOTICE                               # Attribution + legal disclaimer
+├── SECURITY.md                          # Vulnerability reporting
+├── PRIVACY.md                           # Privacy policy
+├── CODE_OF_CONDUCT.md                   # Contributor Covenant v2.1
+└── CONTRIBUTING.md                      # How to contribute
+```
 
 ---
 
@@ -118,14 +176,13 @@ This guide is structured as a **three-level progression**. Work through each lev
 <details>
 <summary><strong>🔴 Level 3 — Advanced Mastery (click to expand)</strong></summary>
 
-- [Chapter 11: Beyond Vibe Coding — Architecture for Scale](#chapter-11-beyond-vibe-coding--architecture-for-scale)
-- [Chapter 12: ADR Creation with Cost Analysis](#chapter-12-adr-creation-with-cost-analysis)
-- [Chapter 13: Architecture Patterns — Choosing the Right One](#chapter-13-architecture-patterns--choosing-the-right-one)
-- [Chapter 14: Conversational Agent Experiences — The Acts Framework](#chapter-14-conversational-agent-experiences--the-acts-framework)
-- [Chapter 15: Self-Learning Loops](#chapter-15-self-learning-loops)
-- [Chapter 16: Token Optimization Strategies](#chapter-16-token-optimization-strategies)
-- [Chapter 17: Auto-Improving Your Instructions](#chapter-17-auto-improving-your-instructions)
-- [Chapter 18: Making This Your Default Setup](#chapter-18-making-this-your-default-setup)
+- [Chapter 11: ADR Creation with Cost Analysis](#chapter-11-adr-creation-with-cost-analysis)
+- [Chapter 12: Conversational Agent Experiences — The Acts Framework](#chapter-12-conversational-agent-experiences--the-acts-framework)
+- [Chapter 13: Self-Learning Loops](#chapter-13-self-learning-loops)
+- [Chapter 14: Token Optimization Strategies](#chapter-14-token-optimization-strategies)
+- [Chapter 15: Auto-Improving Your Instructions](#chapter-15-auto-improving-your-instructions)
+- [Chapter 16: Making This Your Default Setup](#chapter-16-making-this-your-default-setup)
+- [Architecture Reference Guides](#-architecture-reference-guides) (in `docs/`)
 
 </details>
 
@@ -684,66 +741,11 @@ You don't need to write code, but you need to understand what engineers are deci
 
 # 🔴 Level 3 — Advanced Mastery
 
-> **Goal:** Build real products that scale to 100M B2C users and 10K B2B customers. Orchestrate multi-agent workflows. Create systems that improve themselves.
+> **Goal:** Master structured AI workflows, architecture decisions, self-learning loops, and systems that improve themselves over time.
 
 ---
 
-## Chapter 11: Beyond Vibe Coding — Architecture for Scale
-
-Vibe coding gets you to MVP. Real architecture gets you to 100M users without a rewrite.
-
-### The Scale Decision Framework
-
-| Decision | Vibe Code Answer | Scale Architecture Answer |
-|---------|-----------------|--------------------------|
-| Data storage | Single Postgres DB | Read replicas + write DB + Redis cache + CDN |
-| Auth | Sessions in DB | JWT + refresh tokens + distributed session store |
-| File uploads | Save to local disk | S3/GCS + CloudFront CDN + presigned URLs |
-| Background jobs | setTimeout or cron | Redis queues (BullMQ) + worker pools + dead letter queue |
-| Real-time features | Polling every 5s | WebSockets or SSE + Redis Pub/Sub |
-| Multi-tenancy (B2B) | Shared tables + tenant_id | Row-level security (RLS) or isolated schemas + tenant routing |
-| Search | SQL LIKE queries | Elasticsearch / Typesense + inverted index |
-| Rate limiting | None | Redis sliding window + API gateway policies |
-| Observability | console.log | OpenTelemetry traces + structured logs + Prometheus |
-| CI/CD | Manual deploys | GitHub Actions + blue-green deploy + feature flags |
-
-### B2C Requirements (100M users)
-
-- **Stateless services** — horizontal scaling is mandatory; no server-side session state
-- **CDN-first** — serve 80% of requests from edge (Cloudflare/Fastly/CloudFront)
-- **Database sharding strategy** — plan data partitioning before you hit 10M rows
-- **Async everything** — user actions should be non-blocking; use event queues
-- **Mobile-first API design** — GraphQL or REST with field selection to reduce payload size
-- **Abuse prevention** — rate limiting, CAPTCHAs, bot detection at edge
-
-### B2B Requirements (10K customers)
-
-- **Tenant isolation** — row-level security (RLS) in Postgres or dedicated schemas per tenant
-- **SLA-aware infrastructure** — different pricing tiers get different compute/storage allocations
-- **API versioning from day one** — enterprise clients cannot break on your updates
-- **Webhook delivery system** — reliable, retryable, with dead letter queue and replay capability
-- **Audit logs** — every action logged and queryable per tenant (GDPR/compliance requirement)
-- **SSO integration** — SAML/OIDC support for enterprise identity providers
-- **Usage-based billing hooks** — track API calls, storage, seats per tenant
-
-### Recommended Technology Stack
-
-| Layer | Recommended Tech | Why |
-|-------|-----------------|-----|
-| Frontend | Next.js + TypeScript + Tailwind | SSR/SSG hybrid, edge rendering, type safety |
-| API Gateway | Kong / AWS API GW / Cloudflare Workers | Rate limiting, auth, routing at edge |
-| Backend Services | Node.js (Fastify) or Go | High throughput, low latency, async-first |
-| Primary DB | PostgreSQL + PgBouncer | ACID compliance, RLS for multi-tenancy |
-| Cache Layer | Redis Cluster | Session store, rate limiting, pub/sub |
-| Search | Typesense (B2C) / Elasticsearch (B2B) | Full-text + faceted search |
-| Message Queue | Redis BullMQ or Apache Kafka | Async jobs, event streaming |
-| File Storage | S3 + CloudFront | Scalable object storage with CDN |
-| Observability | OpenTelemetry + Grafana + Loki | Traces, metrics, logs unified |
-| Infrastructure | Kubernetes (EKS/GKE) + Terraform | Container orchestration + IaC |
-
----
-
-## Chapter 12: ADR Creation with Cost Analysis
+## Chapter 11: ADR Creation with Cost Analysis
 
 Architecture Decision Records (ADRs) are the most important artifact for teams building at scale. They turn one-time debates into permanent institutional knowledge — and Claude Code should generate one automatically for every significant design choice.
 
@@ -846,34 +848,18 @@ Migration path: Schema is portable to Aurora Postgres with 2-week migration.
 
 ---
 
-## Chapter 13: Architecture Patterns — Choosing the Right One
+## 📐 Architecture Reference Guides
 
-### Pattern Decision Table
+Detailed architecture content has been moved to standalone reference docs that Claude can load on demand. This keeps the playbook focused while making architecture guidance available when you need it.
 
-| If your product needs... | Use this pattern | Key technologies |
-|--------------------------|-----------------|-----------------|
-| High read throughput (social feeds, dashboards) | CQRS + Read replicas + Cache-aside | Redis, Postgres read replicas, Materialized views |
-| Complex business workflows (approvals, pipelines) | Saga pattern + Event Sourcing | Kafka/Redis Streams, Event store, Compensating transactions |
-| Real-time collaboration (docs, chat) | CRDT + WebSocket broadcasting | Yjs, Socket.io, Redis Pub/Sub |
-| Multi-tenant SaaS (B2B) | Silo model (per-tenant DB) or Pool model (RLS) | Postgres RLS, schema-per-tenant, PgBouncer |
-| AI features at scale | Async inference + result caching + streaming | Claude API, Redis cache, SSE/WebSocket |
-| Global deployment | Edge-first + data residency | Cloudflare Workers, Durable Objects, regional Postgres |
-| Event-driven microservices | Choreography (events) or Orchestration (saga) | Kafka, Redis Streams, message schemas |
-
-### Prompting Claude for architecture advice
-
-Always include scale targets when asking for architectural guidance:
-
-```
-"Design the data model for a multi-tenant SaaS analytics platform.
-Scale targets: 10K B2B customers, 50M events/day, p99 query < 500ms.
-Requirements: row-level security, custom dimensions, time-series aggregation.
-Generate ADR-[N] with cost analysis at 4 scale tiers."
-```
+| Guide | What it covers | Load with |
+|-------|---------------|-----------|
+| [Architecture for Scale](docs/architecture-for-scale.md) | Vibe code vs scale decisions, B2C/B2B requirements, recommended tech stack | "Read docs/architecture-for-scale.md" |
+| [Architecture Patterns](docs/architecture-patterns.md) | CQRS, Saga, CRDT, multi-tenancy patterns, pattern decision table | "Read docs/architecture-patterns.md" |
 
 ---
 
-## Chapter 14: Conversational Agent Experiences — The Acts Framework
+## Chapter 12: Conversational Agent Experiences — The Acts Framework
 
 The most sophisticated Claude Code setup treats multi-step AI interactions as a narrative — not a one-shot prompt. Writing agent experiences as **Acts** creates structured, testable, resumable conversation flows.
 
@@ -1042,7 +1028,7 @@ Never skip the Act 3 pause. Never proceed to Act 4 without confirmed design.
 
 ---
 
-## Chapter 15: Self-Learning Loops
+## Chapter 13: Self-Learning Loops
 
 Self-learning loops work at three levels: **session** (what worked this session), **project** (what patterns are improving), and **system** (the instructions themselves getting better over time).
 
@@ -1078,11 +1064,11 @@ Identify:
 Suggest 3 specific improvements with the exact change to make."
 ```
 
-> **The compounding effect:** Teams that run this ritual weekly report CLAUDE.md improving from ~70% instruction-following to ~95%+ within a month. Source: community observations at [rosmur.github.io/claudecode-best-practices](https://rosmur.github.io/claudecode-best-practices/).
+> **The compounding effect:** Teams that run this ritual weekly report measurable improvement in instruction-following over time, as CLAUDE.md rules get refined and edge cases get moved to deterministic hooks. See community discussion at [rosmur.github.io/claudecode-best-practices](https://rosmur.github.io/claudecode-best-practices/).
 
 ---
 
-## Chapter 16: Token Optimization Strategies
+## Chapter 14: Token Optimization Strategies
 
 Context window management is the primary failure mode for advanced Claude Code users. These strategies prevent quality degradation.
 
@@ -1110,7 +1096,7 @@ Context window management is the primary failure mode for advanced Claude Code u
 
 ---
 
-## Chapter 17: Auto-Improving Your Instructions
+## Chapter 15: Auto-Improving Your Instructions
 
 ### Create `.claude/skills/instruction-auditor/SKILL.md`
 
@@ -1147,7 +1133,7 @@ description: Auto-invoke when user asks to review or improve CLAUDE.md, skills,
 
 ---
 
-## Chapter 18: Making This Your Default Setup
+## Chapter 16: Making This Your Default Setup
 
 ### Global configuration (applies to all projects)
 
@@ -1422,7 +1408,7 @@ See [NOTICE](NOTICE) for full attribution and legal details.
 
 <div align="center">
 
-**Built for the PM community • March 2026**
+**Built for the PM community • [CHANGELOG](CHANGELOG.md) • March 2026**
 
 *If this guide helped you, please ⭐ the repo and share it with your PM network.*
 

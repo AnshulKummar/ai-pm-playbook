@@ -13,7 +13,7 @@ This repository contains **educational documentation** (a guide/playbook for Pro
 If you discover a security issue in any code example, hook, or script in this repository:
 
 1. **Do NOT open a public issue.**
-2. Use [GitHub Security Advisories](https://github.com/AnshulKummar/claude-code-pm-playbook/security/advisories/new) to report privately.
+2. Use [GitHub Security Advisories](https://github.com/AnshulKummar/ai-pm-playbook/security/advisories/new) to report privately.
 3. Alternatively, contact the maintainer via [LinkedIn](https://www.linkedin.com/in/anshula42/).
 
 ### What to Include
