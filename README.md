@@ -607,13 +607,6 @@ Create `.claude/settings.json`:
           "type": "command",
           "command": "echo \"$CLAUDE_TOOL_INPUT\" | grep -qE '(rm -rf|git push --force|DROP TABLE)' && echo '{\"block\": true, \"message\": \"Dangerous command blocked — confirm manually\"}' >&2 && exit 2 || exit 0"
         }]
-      },
-      {
-        "matcher": "Edit|Write",
-        "hooks": [{
-          "type": "command",
-          "command": "BRANCH=$(git branch --show-current 2>/dev/null); [ \"$BRANCH\" != \"main\" ] && [ \"$BRANCH\" != \"master\" ] || { echo '{\"block\": true, \"message\": \"Cannot edit protected branch directly\"}' >&2; exit 2; }"
-        }]
       }
     ],
     "PostToolUse": [
@@ -627,6 +620,25 @@ Create `.claude/settings.json`:
 ```
 
 > **Note:** The example above shows a lint hook for illustration. The `settings.json` included in this repo uses `backlog-updater.sh` instead — see [Chapter 9](#chapter-9-live-backlog--todo-management) for details.
+
+<details>
+<summary><strong>Optional: Branch protection hook</strong></summary>
+
+If you want to prevent edits on `main` or `master` (useful for team repos with PR workflows), add this to the `PreToolUse` array:
+
+```json
+{
+  "matcher": "Edit|Write",
+  "hooks": [{
+    "type": "command",
+    "command": "BRANCH=$(git branch --show-current 2>/dev/null); [ \"$BRANCH\" != \"main\" ] && [ \"$BRANCH\" != \"master\" ] || { echo '{\"block\": true, \"message\": \"Cannot edit protected branch directly\"}' >&2; exit 2; }"
+  }]
+}
+```
+
+This forces all changes through feature branches. Remove it if you prefer to commit directly.
+
+</details>
 
 ---
 
@@ -1342,7 +1354,7 @@ When starting any new project, run this in Claude Code:
 ```
 "Create a .claude/ directory structure following Anthropic best practices.
 Include:
-- settings.json with safety hooks (block rm -rf, git push --force, main branch protection)
+- settings.json with safety hooks (block rm -rf, git push --force, DROP TABLE)
 - root CLAUDE.md under 200 lines documenting [your stack and scale targets]
 - skill stubs for: adr-creator, clarification-gate, honest-evaluator, instruction-auditor
 - commands: update-backlog, evaluate, act

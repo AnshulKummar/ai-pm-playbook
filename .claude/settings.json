@@ -7,13 +7,6 @@
           "type": "command",
           "command": "echo \"$CLAUDE_TOOL_INPUT\" | grep -qE '(rm -rf|git push --force|DROP TABLE)' && echo '{\"block\": true, \"message\": \"Dangerous command blocked — confirm manually\"}' >&2 && exit 2 || exit 0"
         }]
-      },
-      {
-        "matcher": "Edit|Write",
-        "hooks": [{
-          "type": "command",
-          "command": "BRANCH=$(git branch --show-current 2>/dev/null); [ \"$BRANCH\" != \"main\" ] && [ \"$BRANCH\" != \"master\" ] || { echo '{\"block\": true, \"message\": \"Cannot edit protected branch directly\"}' >&2; exit 2; }"
-        }]
       }
     ],
     "PostToolUse": [

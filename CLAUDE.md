@@ -18,10 +18,10 @@ An open-source playbook that teaches Product Managers how to use AI code assista
 - Shell scripts: POSIX-compatible bash, no `jq` dependency (use parameter expansion)
 - All hooks must output valid JSON (single object) or nothing — never multiple JSON objects
 - Scripts must be marked executable: `git update-index --chmod=+x <file>`
-- Branch protection: `main` and `master` are protected — use feature branches
+- Branch protection: optional — see README Chapter 5 for opt-in hook
 
 ## What NOT to Do
-- Do not edit the `main` or `master` branch directly (hook will block you)
+- Prefer feature branches for non-trivial changes (optional branch protection hook available)
 - Do not add `jq` as a dependency in any hook or script
 - Do not hardcode file paths — use relative paths from repo root
 - Do not create documentation files unless explicitly asked
@@ -31,7 +31,7 @@ An open-source playbook that teaches Product Managers how to use AI code assista
 - Hook scripts use `$CLAUDE_TOOL_INPUT` env var for tool input JSON
 - `backlog-updater.sh` handles both Write (`content` key) and Edit (`new_string` key) tool inputs
 - `skill-router.sh` matches prompt keywords and suggests relevant `/commands`
-- Branch protection hook uses `git branch --show-current 2>/dev/null` for cross-platform compatibility
+- Branch protection hook (opt-in) uses `git branch --show-current 2>/dev/null` for cross-platform compatibility
 
 ## Governance Files
 - LICENSE (MIT), NOTICE, SECURITY.md, PRIVACY.md, CODE_OF_CONDUCT.md, CONTRIBUTING.md
