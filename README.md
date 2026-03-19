@@ -1577,6 +1577,7 @@ This guide synthesises work from many practitioners and researchers. Full attrib
 | [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | Community | — | Skills, hooks, commands directory |
 | [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice) | Shan Raisshan | — | Command → Agent → Skill architecture |
 | [ChrisWiles/claude-code-showcase](https://github.com/ChrisWiles/claude-code-showcase) | Chris Wiles | — | Reference hooks, settings, skills |
+| [ComposioHQ/agent-orchestrator](https://github.com/ComposioHQ/agent-orchestrator) | [Composio](https://composio.dev) | ⭐ 4.8K | Optional parallel agent orchestration (`--with-ao`) |
 
 ### Official Documentation
 
