@@ -1,16 +1,28 @@
 #!/bin/bash
 # AI PM Playbook — One-time project bootstrap
-# Usage: bash setup.sh [project-directory]
+# Usage: bash setup.sh [project-directory] [--with-ao]
 #
 # This script sets up a new project with the full PM governance layer:
 # - .claude/ directory with skills, commands, hooks, and settings
 # - CLAUDE.md template
 # - TASKS.md and BACKLOG.md templates
 # - Installs pm-skills plugin (if Claude Code CLI is available)
+#
+# Optional flags:
+#   --with-ao   Include Agent Orchestrator integration (clarification-gate
+#               autonomous mode + /sync-to-issues command)
 
 set -e
 
-PROJECT_DIR="${1:-.}"
+# Parse arguments
+WITH_AO=false
+PROJECT_DIR="."
+for arg in "$@"; do
+  case "$arg" in
+    --with-ao) WITH_AO=true ;;
+    *) PROJECT_DIR="$arg" ;;
+  esac
+done
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Setting up AI PM Playbook in: $PROJECT_DIR"
@@ -38,6 +50,13 @@ echo "[3/6] Installing commands..."
 cp "$SCRIPT_DIR/.claude/commands/act.md" "$PROJECT_DIR/.claude/commands/act.md"
 cp "$SCRIPT_DIR/.claude/commands/evaluate.md" "$PROJECT_DIR/.claude/commands/evaluate.md"
 cp "$SCRIPT_DIR/.claude/commands/update-backlog.md" "$PROJECT_DIR/.claude/commands/update-backlog.md"
+
+# Copy AO integration (optional)
+if [ "$WITH_AO" = true ]; then
+  echo "  [AO] Installing /sync-to-issues command..."
+  cp "$SCRIPT_DIR/.claude/commands/sync-to-issues.md" "$PROJECT_DIR/.claude/commands/sync-to-issues.md"
+  echo "  [AO] Agent Orchestrator integration enabled"
+fi
 
 # Copy hooks (make executable)
 echo "[4/6] Installing hooks..."
@@ -79,8 +98,17 @@ echo "  └── hooks/"
 echo "      ├── skill-router.sh    (auto-suggest commands)"
 echo "      └── backlog-updater.sh (auto-log task events)"
 echo ""
+if [ "$WITH_AO" = true ]; then
+echo "  Agent Orchestrator integration:"
+echo "    /sync-to-issues  (bridge TASKS.md → GitHub Issues for AO)"
+echo ""
+fi
 echo "Next steps:"
 echo "  1. Edit CLAUDE.md with your project details"
 echo "  2. Run: claude plugin marketplace add phuryn/pm-skills"
 echo "  3. Start with: /act [your goal]"
+if [ "$WITH_AO" = true ]; then
+echo "  4. Install AO: npm install -g @composio/ao"
+echo "  5. Sync tasks: /sync-to-issues --dry-run"
+fi
 echo ""

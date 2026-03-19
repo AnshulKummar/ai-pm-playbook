@@ -2,6 +2,7 @@
 
 ## Quick Commands
 - Setup: `bash setup.sh /path/to/your-project`
+- Setup with AO: `bash setup.sh /path/to/your-project --with-ao`
 - Lint markdown: `npx markdownlint-cli2 "**/*.md"`
 
 ## About This Product
@@ -32,6 +33,7 @@ An open-source playbook that teaches Product Managers how to use AI code assista
 - `backlog-updater.sh` handles both Write (`content` key) and Edit (`new_string` key) tool inputs
 - `skill-router.sh` matches prompt keywords and suggests relevant `/commands`
 - Branch protection hook (opt-in) uses `git branch --show-current 2>/dev/null` for cross-platform compatibility
+- Agent Orchestrator integration (opt-in via `--with-ao`): `sync-to-issues.md` + autonomous clarification-gate
 
 ## Governance Files
 - LICENSE (MIT), NOTICE, SECURITY.md, PRIVACY.md, CODE_OF_CONDUCT.md, CONTRIBUTING.md

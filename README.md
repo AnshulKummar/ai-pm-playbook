@@ -29,6 +29,9 @@ cd ai-pm-playbook
 # 2. Bootstrap your project with the full PM governance layer
 bash setup.sh /path/to/your-project
 
+# 2b. (Optional) Include Agent Orchestrator integration for parallel agents
+bash setup.sh /path/to/your-project --with-ao
+
 # 3. Install PM Skills plugin (65 skills, 36 commands)
 claude plugin marketplace add phuryn/pm-skills
 
@@ -36,7 +39,7 @@ claude plugin marketplace add phuryn/pm-skills
 /act [your goal here]
 ```
 
-> **What you get on `git clone`:** 4 skills, 3 commands, 2 hooks, safety guards, settings.json, and project templates — all as real files, ready to use. No copy-pasting from code blocks.
+> **What you get on `git clone`:** 4 skills, 3 commands, 2 hooks, safety guards, settings.json, and project templates — all as real files, ready to use. No copy-pasting from code blocks. Add `--with-ao` for [Agent Orchestrator](https://github.com/ComposioHQ/agent-orchestrator) integration.
 
 ### Repository structure
 
@@ -52,7 +55,8 @@ ai-pm-playbook/
 │   ├── commands/
 │   │   ├── act.md                       # /act — 5-act structured workflow
 │   │   ├── evaluate.md                  # /evaluate — honest assessment
-│   │   └── update-backlog.md            # /update-backlog — sync tasks
+│   │   ├── update-backlog.md            # /update-backlog — sync tasks
+│   │   └── sync-to-issues.md            # /sync-to-issues — AO bridge (--with-ao)
 │   └── hooks/
 │       ├── skill-router.sh              # Auto-suggest relevant commands
 │       └── backlog-updater.sh           # Auto-log task events
@@ -109,6 +113,7 @@ This playbook builds on top of [Paweł Huryn's pm-skills](https://github.com/phu
 | `/act [goal]` | Runs a structured **5-Act experience**: Context → Discovery → Design (pause for approval) → Implementation → Review. Chains clarification-gate + evaluate + ADR generation |
 | `/evaluate [idea]` | Triggers the honest-evaluator: strengths / fatal flaws / hidden costs / BUILD NOW or DIFFERENTLY verdict |
 | `/update-backlog` | Syncs TASKS.md: marks completed items, adds discovered items, logs parked items with reasons |
+| `/sync-to-issues` | *(Optional — `--with-ao`)* Bridges TASKS.md → GitHub Issues for [Agent Orchestrator](https://github.com/ComposioHQ/agent-orchestrator) parallel execution |
 
 ### Custom Hooks (not in pm-skills)
 
@@ -295,6 +300,64 @@ bash /path/to/ai-pm-playbook/setup.sh .
 | Honest evaluation before building | "Everything looks great!" flattery |
 | Clear record of what was built vs deferred | PoC dies, learnings lost |
 | Stakeholder can see and interact with it | Slides and hand-waving |
+
+---
+
+## 🤖 Optional: Agent Orchestrator Integration
+
+<details>
+<summary><strong>Scale to parallel agents with Agent Orchestrator (click to expand)</strong></summary>
+
+This playbook includes optional integration with [Agent Orchestrator](https://github.com/ComposioHQ/agent-orchestrator) (AO) — a tool that spawns parallel AI coding agents, each in its own git worktree with its own PR. Enable it with `--with-ao` during setup.
+
+### What you get with `--with-ao`
+
+| Feature | What it does |
+|---------|-------------|
+| `/sync-to-issues` | Bridges TASKS.md P0/P1 items → GitHub Issues with `ao-ready` label. Supports `--dry-run`, dedup, and tracking refs (`→ #123`) |
+| **Autonomous clarification-gate** | When AO spawns a worker agent, `clarification-gate` detects the `AO_SESSION` env var and skips interactive questions — instead documenting assumptions in code comments and PR descriptions |
+
+### The AO-ready workflow
+
+```
+1. /evaluate [idea]              → Should we build this?
+2. /act [idea]                   → Structured 5-act to design it
+3. /sync-to-issues               → Convert approved P0/P1 items to GitHub Issues
+4. ao start                      → AO spawns agents per issue (parallel)
+5. Review PRs from dashboard     → Merge what's good
+6. /update-backlog               → Sync TASKS.md with what shipped
+```
+
+Steps 1-2 use your playbook (interactive, governance layer). Steps 3-5 use AO (parallel execution). Step 6 brings it back to your tracking system.
+
+### Setup
+
+```bash
+# 1. Bootstrap with AO integration
+bash setup.sh /path/to/your-project --with-ao
+
+# 2. Install Agent Orchestrator
+npm install -g @composio/ao
+
+# 3. Preview what would be synced (dry run)
+/sync-to-issues --dry-run
+
+# 4. Sync approved tasks to GitHub Issues
+/sync-to-issues
+
+# 5. Start parallel agents
+ao start
+```
+
+### Requirements
+
+- [Agent Orchestrator](https://github.com/ComposioHQ/agent-orchestrator) (`npm install -g @composio/ao`)
+- tmux (macOS/Linux) or WSL2 (Windows)
+- GitHub CLI (`gh`) authenticated
+
+> **Note:** AO integration is fully optional. The core playbook works without it. AO adds parallel execution throughput — the playbook provides decision quality governance.
+
+</details>
 
 ---
 
